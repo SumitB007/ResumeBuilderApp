@@ -6,6 +6,7 @@
     gap: 30px;
     box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     padding-top: 5px;
+    height: fit-content;
 }
 
 
@@ -16,6 +17,16 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
+
+.header::-webkit-scrollbar{
+    height: 7px;
+    border-radius: 20px;
+}
+
+.header::-webkit-scrollbar-thumb{
+    border-radius: 20px;
+    background-color: rgb(165,165,165);
+}
 
 .header .section{
     padding: 10px;

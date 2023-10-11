@@ -549,7 +549,7 @@ function Editor(props){
             github: activeInfo.details[activeDetailIndex]?.github || "",
             college: activeInfo.details[activeDetailIndex]?.college || "",
         });
-    },[activeDetailIndex]);
+    }, [activeDetailIndex]);
 
     return(
         <div className={styles.container}>

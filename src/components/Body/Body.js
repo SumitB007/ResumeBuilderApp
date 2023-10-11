@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import {ArrowDown} from "react-feather";
 import Editor from "../Editor/Editor";
+import Resume from "../Resume/Resume"
 import styles from "./Body.module.css";
 
 
@@ -84,7 +85,8 @@ function Body(){
                 sections={sections} 
                 information={resumeInformation}
                 setInformation= {setResumeInformation}
-                />
+                /> 
+            <Resume />
             </div>
             
         </div>
