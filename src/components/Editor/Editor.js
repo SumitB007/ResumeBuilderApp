@@ -457,6 +457,38 @@ function Editor(props){
         }
     };
 
+    const handleAddNew= () => {
+        const details = activeInformation?.details;
+        if (!details) return;
+        const lastDetail = details.slice(-1)[0];
+        if (!Object.keys(lastDetail).length) return;
+        details?.push({});
+
+
+        props.setInformation(prev => ({
+                ...prev,
+                [sections[activeSectionKey]]:
+                {...information[sections[activeSectionKey]],
+                details: details,
+            }}));
+        setActiveDetailIndex(details?.length - 1);
+    };
+
+    const handleDeleteDetail = (index) => {
+        const details = activeInformation?.details?[...activeInformation?.details]:""
+        if (!details) return
+        details.splice(index,1)
+        props.setInformation((prev) => ({
+                ...prev,
+                [sections[activeSectionKey]]:
+                {...information[sections[activeSectionKey]],
+                details: details,
+            },
+        }));
+        setActiveDetailIndex(prev=>prev===index?0:prev-1);
+
+    };
+
     useEffect( () => {
         const activeInfo = information[sections[activeSectionKey]]
         setActiveInformation(activeInfo);
@@ -494,7 +526,30 @@ function Editor(props){
         });
     },[activeSectionKey]);
 
+    useEffect( () => {
+        setActiveInformation(information[sections[activeSectionKey]])
+    },[information])    
 
+    useEffect(() => {
+        const details = activeInformation?.details;
+        if(!details) return;
+
+        const activeInfo = information[sections[activeSectionKey]];
+        setValues({
+            overview: activeInfo.details[activeDetailIndex]?.overview || "",
+            link: activeInfo.details[activeDetailIndex]?.link || "",
+            certificationLink: activeInfo.details[activeDetailIndex]?.certificationLink || "",
+            companyName: activeInfo.details[activeDetailIndex]?.companyName || "",
+            location: activeInfo.details[activeDetailIndex]?.location || "",
+            startDate: activeInfo.details[activeDetailIndex]?.startDate || "",
+            endDate: activeInfo.details[activeDetailIndex]?.endDate || "",
+            points: activeInfo.details[activeDetailIndex]?.points || "",
+            title: activeInfo.details[activeDetailIndex]?.title || "",
+            linkedin: activeInfo.details[activeDetailIndex]?.linkedin || "",
+            github: activeInfo.details[activeDetailIndex]?.github || "",
+            college: activeInfo.details[activeDetailIndex]?.college || "",
+        });
+    })
 
     return(
         <div className={styles.container}>
@@ -530,11 +585,21 @@ function Editor(props){
                                     onClick = {() => setActiveDetailIndex(index)}
                                     >
                                 <p>{sections[activeSectionKey]} {index+1}</p>
-                                <X />
+                                <X  onClick={(event) => {
+                                    event.stopPropagation();
+                                    handleDeleteDetail(index)}}/>
                                 </div>
 
                             })
                             : ""}
+                            {
+                                activeInformation?.details && activeInformation?.details?.length > 0 ? (
+                                    <div className={styles.new} onClick={handleAddNew}>New</div>
+                                ) : (
+                                    ""
+                                )
+                            }
+                            
                     </div>
 
                 {generateBody()}
