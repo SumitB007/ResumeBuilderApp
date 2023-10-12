@@ -5,35 +5,72 @@ import styles from "./Resume.module.css";
 
 function Resume(props) {
 
+    const information = props.information;
+    const sections = props.sections;
     const [columns, setColumns] = useState([[],[]]);
 
+    const info = {
+        workExp:information[sections.workExp],
+        project:information[sections.workExp],
+        achievement:information[sections.achievement],
+        education:information[sections.education],
+        basicInfo:information[sections.basicInfo],
+        summary:information[sections.summary],
+        other:information[sections.other],
+    };
+
+    const getFormattedDate=(value) => {
+        if(!value)return ""
+        const date=new Date(value)
+
+        return `${date.getDate()}/${
+            date.getMonth() + 1 > 9 ? date.getMonth() + 1 : "0" + date.getMonth() + 1
+            }/${date.getFullYear()}`;
+    };
 
     const workExpSection = (
         <div key={"workExp"} className={`${styles.section} ${styles.workExp}`}>
-            <div className={styles.sectionTitle}>Work Experience</div>
+            <div className={styles.sectionTitle}>{info.workExp.sectionTitle}</div>
             <div className={styles.content}>
-                <div className={styles.item}>
-                    <p className={styles.title}>Full Stack Developer</p>
-                    <p className={styles.subTitle}>Company Name</p>
-                    <a className={styles.link}>
-                        <Paperclip />
-                        https://wed32232/wdwed/wef
-                    </a>
-                    <div className={styles.date}>
-                        <Calendar /> 2/07/2001 - 1/12/2002
+                {
+                    info.workExp?.details?.map((item) => {
+                    <div className={styles.item} key={item.title}>
+                        {item.title &&   <p className={styles.title}>{item.title}</p> }
+                        {item.companyName && (
+                            <p className={styles.subTitle}>{item.companyName}</p>
+                        )}
+                        {item.certificationLink && (
+                            <a className={styles.link} href={item.certificationLink}>
+                            <Paperclip />
+                            {item.certificationLink}
+                        </a>
+                        )}
+                        {item.startDate && item.endDate ? (
+                            <div className={styles.date}>
+                            <Calendar /> {getFormattedDate(item.startDate)}-{getFormattedDate(item.endDate)}
+                        </div>
+                        ): (
+                            ""
+                        )}
+                        {item.location && (
+                            <p className={styles.date}>
+                            <MapPin />
+                            {item.location}
+                        </p>
+                        )}
+                        
+                        {item.points?.length>0 && (
+                            <ul className={styles.points}>
+                            {item.points?.map((elem, index) =>(
+                                    <li className={styles.point} key={elem+index}>{elem}</li>
+                                ))}                  
+                            </ul>
+                        )}
+                        
                     </div>
-                    <p className={styles.date}>
-                        <MapPin />
-                        Remote
-                    </p>
-                  
-                    <ul className={styles.points}>
-                        <li className={styles.point}>It is point one</li>
-                        <li className={styles.point}>It is point two</li>
-                        <li className={styles.point}>It is point three</li>
-                        <li className={styles.point}>It is point four</li>                    
-                    </ul>
-                </div>
+                })
+                }
+                
             </div>
         </div>
     );
