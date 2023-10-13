@@ -10,8 +10,9 @@
 
 
 .heading {
-    font-weight: 500;
+    font-weight: 550;
     font-size: 2.1rem;
+    
 }
 
 
@@ -39,6 +40,10 @@
     background-color: #239ce2;
 }
 
+.colors .active{
+    border: 2px solid #000;
+}
+
 .toolbar button{
      padding: 8px 16px;
      border-radius: 5px;
@@ -49,6 +54,7 @@
      font-weight: 500;
      font-size: 1rem;
      letter-spacing: 1px;
+     display: flex;
      gap: 5px;
      align-items: center;
      cursor: pointer;
