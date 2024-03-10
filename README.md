@@ -68,3 +68,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Live Preview: https://resumebuilder-sumitb007.vercel.app/
+
+### Preview Images:
+
+![image](https://github.com/SumitB007/ResumeBuilderApp/assets/89058971/d5866c5d-b2e8-426e-b154-d199faab5233)
+
+![image](https://github.com/SumitB007/ResumeBuilderApp/assets/89058971/b5ed7110-47ad-46e7-b84a-00e93d6223d5)
+
+
+### Preview of the resume
+![image](https://github.com/SumitB007/ResumeBuilderApp/assets/89058971/89807cf9-d07a-484a-9df1-1a90e8a97c19)
+
+
+### Download Preview
+![image](https://github.com/SumitB007/ResumeBuilderApp/assets/89058971/b61e5ec7-2e5e-4402-b0b2-b7307a841de7)
+
+
